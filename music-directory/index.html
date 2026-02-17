@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phi Mu Alpha Sinfonia — Beta Tau Chapter</title>
     <meta name="description"
-        content="Official directory and member hub for Phi Mu Alpha Sinfonia, Beta Tau Chapter. Meet our active brothers, alumni, and learn about our mission." />
+        content="Official home of Phi Mu Alpha Sinfonia, Beta Tau Chapter. Brotherhood through music." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,152 +17,102 @@
 
 <body>
 
-    <!-- ========== NAV ========== -->
-    <nav id="main-nav">
+    <nav class="site-nav">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">ΦΜΑ</a>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+            <a href="index.html" class="nav-logo">ΦΜΑ</a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
             <ul id="nav-links" class="nav-links">
-                <li><a href="#about">Who We Are</a></li>
-                <li><a href="#mission">What We Do</a></li>
-                <li><a href="#members">Active Members</a></li>
-                <li><a href="#alumni">Alumni</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="mission.html">What We Do</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- ========== HERO ========== -->
-    <header id="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-tag">Beta Tau Chapter</p>
-            <h1>Phi Mu Alpha Sinfonia</h1>
-            <p class="hero-subtitle">The oldest and largest secret national fraternity in music in America.</p>
-            <a href="#members" class="btn btn-primary">Meet Our Members</a>
+    <!-- HERO -->
+    <header class="home-hero">
+        <div class="home-hero-content">
+            <p class="tag">Beta Tau Chapter</p>
+            <h1>Phi Mu Alpha<br />Sinfonia</h1>
+            <p class="lead">The oldest and largest secret national fraternity in music in America.</p>
+            <div class="hero-cta">
+                <a href="members.html" class="btn btn-primary">Meet Our Brothers</a>
+                <a href="about.html" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </header>
 
-    <!-- ========== WHO WE ARE ========== -->
-    <section id="about" class="section">
+    <!-- STATS -->
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">Who We Are</h2>
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="about-icon">♩</div>
-                    <h3>Brotherhood</h3>
-                    <p>A tight-knit community of musicians bonded by a shared passion for performance, education, and
-                        service. We uplift each other musically and personally.</p>
+            <div class="stat-row">
+                <div class="stat-item reveal">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Years of Legacy</div>
                 </div>
-                <div class="about-card">
-                    <div class="about-icon">♬</div>
-                    <h3>Heritage</h3>
-                    <p>Founded over a century ago, our chapter carries a rich tradition of musical excellence, artistic
-                        integrity, and leadership in the arts.</p>
+                <div class="stat-item reveal">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Active Brothers</div>
                 </div>
-                <div class="about-card">
-                    <div class="about-icon">♫</div>
-                    <h3>Diversity</h3>
-                    <p>Our members span every genre and instrument — from classical orchestral to jazz, musical theatre,
-                        and contemporary production. All voices belong here.</p>
+                <div class="stat-item reveal">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Alumni Worldwide</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Instruments Represented</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== WHAT WE DO ========== -->
-    <section id="mission" class="section section-dark">
+    <!-- PREVIEW CARDS -->
+    <section class="section">
         <div class="container">
-            <h2 class="section-title">What We Do</h2>
-            <div class="mission-grid">
-                <div class="mission-item">
-                    <span class="mission-number">01</span>
-                    <h3>Performances</h3>
-                    <p>We host recitals, ensemble concerts, and open-mic showcases throughout the academic year, giving
-                        every member a stage.</p>
-                </div>
-                <div class="mission-item">
-                    <span class="mission-number">02</span>
-                    <h3>Community Service</h3>
-                    <p>From music therapy outreach to free youth workshops, we bring the power of music to underserved
-                        communities around campus.</p>
-                </div>
-                <div class="mission-item">
-                    <span class="mission-number">03</span>
-                    <h3>Professional Growth</h3>
-                    <p>Masterclasses, guest artist panels, and networking events prepare our members for careers across
-                        the music industry.</p>
-                </div>
-                <div class="mission-item">
-                    <span class="mission-number">04</span>
-                    <h3>Social Events</h3>
-                    <p>Bonfire jam sessions, formal galas, and brotherhood retreats keep our chapter connected beyond
-                        the rehearsal room.</p>
-                </div>
+            <div class="preview-grid stagger">
+                <a href="about.html" class="preview-card reveal">
+                    <span class="card-label">Our Identity</span>
+                    <h3>Who We Are</h3>
+                    <p>A brotherhood of musicians united by the love of music, mutual support, and a legacy stretching
+                        over a century.</p>
+                    <span class="card-link">Explore</span>
+                </a>
+                <a href="mission.html" class="preview-card reveal">
+                    <span class="card-label">Our Purpose</span>
+                    <h3>What We Do</h3>
+                    <p>Performances, community outreach, professional development, and brotherhood — advancing music on
+                        every front.</p>
+                    <span class="card-link">Explore</span>
+                </a>
+                <a href="members.html" class="preview-card reveal">
+                    <span class="card-label">Our People</span>
+                    <h3>Active Members</h3>
+                    <p>Meet the current brothers of Beta Tau — instrumentalists, vocalists, composers, and educators.
+                    </p>
+                    <span class="card-link">Explore</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ========== ACTIVE MEMBERS ========== -->
-    <section id="members" class="section">
-        <div class="container">
-            <h2 class="section-title">Active Members</h2>
-            <div class="filter-bar">
-                <input type="text" id="member-search" placeholder="Search by name, instrument, or role…" />
-                <div class="filter-chips">
-                    <button class="chip active" data-filter="all">All</button>
-                    <button class="chip" data-filter="Vocals">Vocals</button>
-                    <button class="chip" data-filter="Piano">Piano</button>
-                    <button class="chip" data-filter="Strings">Strings</button>
-                    <button class="chip" data-filter="Brass">Brass</button>
-                    <button class="chip" data-filter="Woodwinds">Woodwinds</button>
-                    <button class="chip" data-filter="Percussion">Percussion</button>
-                </div>
-            </div>
-            <div id="members-grid" class="members-grid">
-                <!-- Cards injected by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== ALUMNI ========== -->
-    <section id="alumni" class="section section-dark">
-        <div class="container">
-            <h2 class="section-title">Alumni</h2>
-            <div id="alumni-grid" class="members-grid">
-                <!-- Cards injected by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== CONTACT ========== -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-sub">Interested in joining or collaborating? Drop us a line.</p>
-            <form id="contact-form" class="contact-form">
-                <div class="form-row">
-                    <input type="text" id="contact-name" placeholder="Your Name" required />
-                    <input type="email" id="contact-email" placeholder="Your Email" required />
-                </div>
-                <textarea id="contact-message" rows="5" placeholder="Your Message…" required></textarea>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer id="footer">
+    <footer class="site-footer">
         <div class="container footer-inner">
             <p class="footer-logo">ΦΜΑ</p>
             <ul class="footer-links">
-                <li><a href="#about">Who We Are</a></li>
-                <li><a href="#mission">What We Do</a></li>
-                <li><a href="#members">Members</a></li>
-                <li><a href="#alumni">Alumni</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="mission.html">What We Do</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <p class="footer-copy">&copy; 2026 Phi Mu Alpha Sinfonia, Beta Tau Chapter. All rights reserved.</p>
         </div>
