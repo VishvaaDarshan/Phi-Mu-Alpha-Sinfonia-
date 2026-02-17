@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Phi Mu Alpha Sinfonia</title>
+    <meta name="description"
+        content="Get in touch with Phi Mu Alpha Sinfonia, Beta Tau Chapter. Interested in joining or collaborating? Send us a message." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">ΦΜΑ</a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="mission.html">What We Do</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="book.html">Book Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="page-hero">
+        <div class="container">
+            <p class="tag">Reach Out</p>
+            <h1>Get In Touch</h1>
+            <p class="lead">Interested in rushing, collaborating, or just have a question? We'd love to hear from you.
+            </p>
+        </div>
+    </header>
+
+    <!-- FORM -->
+    <section class="section">
+        <div class="container">
+            <form id="contact-form" class="contact-form reveal">
+                <div class="form-row">
+                    <input type="text" id="contact-name" placeholder="Your Name" required />
+                    <input type="email" id="contact-email" placeholder="Your Email" required />
+                </div>
+                <input type="text" id="contact-subject" placeholder="Subject" style="margin-bottom: var(--space-sm);" />
+                <textarea id="contact-message" rows="6" placeholder="Your Message…" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="section">
+        <div class="container">
+            <div class="pillars-grid stagger">
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon">✉</div>
+                    <h3>Email</h3>
+                    <p>betatau@phimualphasinfonia.org</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Frost School of Music<br />University of Miami<br />Coral Gables, FL</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <div class="pillar-icon">🔗</div>
+                    <h3>Social</h3>
+                    <p>Follow @PhiMuAlphaBetaTau<br />on Instagram and Facebook</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p class="footer-logo">ΦΜΑ</p>
+            <ul class="footer-links">
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="mission.html">What We Do</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <p class="footer-copy">&copy; 2026 Phi Mu Alpha Sinfonia, Beta Tau Chapter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn');
+            btn.textContent = 'Message Sent ✓';
+            btn.style.background = 'var(--clr-gold)';
+            setTimeout(() => {
+                btn.textContent = 'Send Message';
+                btn.style.background = '';
+                e.target.reset();
+            }, 2500);
+        });
+    </script>
+</body>
+
+</html>

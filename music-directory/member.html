@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Profile — Phi Mu Alpha Sinfonia</title>
+    <meta name="description" content="Member profile — Phi Mu Alpha Sinfonia, Beta Tau Chapter." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">ΦΜΑ</a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="mission.html">What We Do</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="book.html">Book Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="profile-section">
+        <div class="container" id="profile-content">
+            <!-- JS renders profile content -->
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p class="footer-logo">ΦΜΑ</p>
+            <ul class="footer-links">
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="mission.html">What We Do</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <p class="footer-copy">&copy; 2026 Phi Mu Alpha Sinfonia, Beta Tau Chapter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id'), 10);
+            const type = params.get('type') || 'active';
+
+            const list = type === 'alumni' ? alumniMembers : activeMembers;
+            const member = list[id];
+
+            if (!member) {
+                document.getElementById('profile-content').innerHTML = `
+          <p class="profile-name">Member Not Found</p>
+          <a href="${type === 'alumni' ? 'alumni.html' : 'members.html'}" class="profile-back">Back to Directory</a>
+        `;
+                return;
+            }
+
+            document.title = `${member.name} — Phi Mu Alpha Sinfonia`;
+
+            const backPage = type === 'alumni' ? 'alumni.html' : 'members.html';
+            const backLabel = type === 'alumni' ? 'Back to Alumni' : 'Back to Members';
+
+            document.getElementById('profile-content').innerHTML = `
+        <div class="profile-avatar">${getInitials(member.name)}</div>
+        <h1 class="profile-name">${member.name}</h1>
+        <p class="profile-role">${member.role}</p>
+        <div class="profile-details">
+          <div class="profile-detail-item">
+            <div class="profile-detail-label">Instrument</div>
+            <div class="profile-detail-value">${member.instrument}</div>
+          </div>
+          ${member.year ? `
+          <div class="profile-detail-item">
+            <div class="profile-detail-label">Year</div>
+            <div class="profile-detail-value">${member.year}</div>
+          </div>` : ''}
+          ${member.category ? `
+          <div class="profile-detail-item">
+            <div class="profile-detail-label">Section</div>
+            <div class="profile-detail-value">${member.category}</div>
+          </div>` : ''}
+        </div>
+        <p class="profile-bio">${member.bio}</p>
+        <a href="${backPage}" class="profile-back">${backLabel}</a>
+      `;
+        });
+    </script>
+</body>
+
+</html>
