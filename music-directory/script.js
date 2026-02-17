@@ -48,14 +48,35 @@ function initReveal() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
+/* ---------- Brothers Auth (client-side) ---------- */
+const BROTHER_PASS = 'sinfonia'; // Change this to your chapter passphrase
+
+function brotherLogin(password) {
+    if (password === BROTHER_PASS) {
+        localStorage.setItem('pma_auth', 'true');
+        return true;
+    }
+    return false;
+}
+
+function isBrotherLoggedIn() {
+    return localStorage.getItem('pma_auth') === 'true';
+}
+
+function brotherLogout() {
+    localStorage.removeItem('pma_auth');
+}
+
 /* ---------- Member Utilities ---------- */
 function getInitials(name) {
     return name.split(' ').map(n => n[0]).join('');
 }
 
-function createMemberCard(member) {
-    const card = document.createElement('div');
+function createMemberCard(member, index, type) {
+    const idx = member._origIdx !== undefined ? member._origIdx : index;
+    const card = document.createElement('a');
     card.className = 'member-card reveal';
+    card.href = `member.html?id=${idx}&type=${type || 'active'}`;
     if (member.category) card.dataset.category = member.category;
 
     card.innerHTML = `
@@ -63,17 +84,16 @@ function createMemberCard(member) {
     <h3>${member.name}</h3>
     <p class="member-role">${member.role}</p>
     <p class="member-detail">${member.instrument}${member.year ? ' · ' + member.year : ''}</p>
-    <p class="member-bio">${member.bio}</p>
   `;
     return card;
 }
 
-function renderMembers(list, containerId) {
+function renderMembers(list, containerId, type) {
     const grid = document.getElementById(containerId);
     if (!grid) return;
     grid.innerHTML = '';
     grid.classList.add('stagger');
-    list.forEach(m => grid.appendChild(createMemberCard(m)));
+    list.forEach((m, i) => grid.appendChild(createMemberCard(m, i, type)));
     initReveal();
 }
 

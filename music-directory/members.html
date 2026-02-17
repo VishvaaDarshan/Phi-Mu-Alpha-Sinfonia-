@@ -28,6 +28,7 @@
                 <li><a href="mission.html">What We Do</a></li>
                 <li><a href="members.html">Members</a></li>
                 <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="book.html">Book Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -73,6 +74,7 @@
                 <li><a href="mission.html">What We Do</a></li>
                 <li><a href="members.html">Members</a></li>
                 <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="book.html">Book Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <p class="footer-copy">&copy; 2026 Phi Mu Alpha Sinfonia, Beta Tau Chapter. All rights reserved.</p>
@@ -86,17 +88,19 @@
 
             function applyFilter() {
                 const q = document.getElementById('member-search').value.toLowerCase();
-                const filtered = activeMembers.filter(m => {
-                    const cat = currentFilter === 'all' || m.category === currentFilter;
-                    const search = m.name.toLowerCase().includes(q) ||
-                        m.instrument.toLowerCase().includes(q) ||
-                        m.role.toLowerCase().includes(q);
-                    return cat && search;
-                });
-                renderMembers(filtered, 'members-grid');
+                const filtered = activeMembers
+                    .map((m, i) => ({ ...m, _origIdx: i }))
+                    .filter(m => {
+                        const cat = currentFilter === 'all' || m.category === currentFilter;
+                        const search = m.name.toLowerCase().includes(q) ||
+                            m.instrument.toLowerCase().includes(q) ||
+                            m.role.toLowerCase().includes(q);
+                        return cat && search;
+                    });
+                renderMembers(filtered, 'members-grid', 'active');
             }
 
-            renderMembers(activeMembers, 'members-grid');
+            renderMembers(activeMembers, 'members-grid', 'active');
 
             document.querySelectorAll('.chip').forEach(chip => {
                 chip.addEventListener('click', () => {
