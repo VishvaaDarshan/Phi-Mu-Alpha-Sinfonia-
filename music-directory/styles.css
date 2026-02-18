@@ -1605,3 +1605,35 @@ body {
     color: var(--clr-text-dim);
     line-height: 1.5;
 }
+
+/* ============================================
+   BROTHERS GROUP PHOTO
+   ============================================ */
+.brothers-photo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--clr-border);
+    background: var(--clr-surface-2);
+    transition: border-color 0.45s, box-shadow 0.45s;
+}
+
+.brothers-photo:hover {
+    border-color: var(--clr-border-h);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.brothers-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-caption {
+    text-align: center;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--clr-text-dim);
+}
