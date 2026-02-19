@@ -46,6 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---------- Hero Scroll Fade ---------- */
     initHeroScrollFade();
+
+    /* ---------- Custom Cursor Glow ---------- */
+    initCursorGlow();
 });
 
 function initReveal() {
@@ -365,3 +368,81 @@ function initHeroScrollFade() {
         }
     });
 }
+
+function initCursorGlow() {
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    // Create cursor elements dynamically
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    document.body.appendChild(dot);
+
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+    let dotX = 0, dotY = 0;
+    let visible = false;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!visible) {
+            visible = true;
+            glow.classList.add('active');
+            dot.classList.add('active');
+        }
+    });
+
+    document.addEventListener('mouseleave', () => {
+        visible = false;
+        glow.classList.remove('active');
+        dot.classList.remove('active');
+    });
+
+    // Grow cursor dot on interactive elements
+    document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, .card, .pillar-card, .mission-item, .member-card, .instrument-photo');
+        if (target) {
+            dot.style.width = '14px';
+            dot.style.height = '14px';
+            dot.style.opacity = '0.5';
+            glow.style.width = '400px';
+            glow.style.height = '400px';
+        }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest('a, button, .card, .pillar-card, .mission-item, .member-card, .instrument-photo');
+        if (target) {
+            dot.style.width = '6px';
+            dot.style.height = '6px';
+            dot.style.opacity = '0.7';
+            glow.style.width = '300px';
+            glow.style.height = '300px';
+        }
+    });
+
+    function animate() {
+        // Smooth lerp for the glow (slower, ambient)
+        glowX += (mouseX - glowX) * 0.08;
+        glowY += (mouseY - glowY) * 0.08;
+        glow.style.left = glowX + 'px';
+        glow.style.top = glowY + 'px';
+
+        // Faster lerp for the dot (snappy)
+        dotX += (mouseX - dotX) * 0.2;
+        dotY += (mouseY - dotY) * 0.2;
+        dot.style.left = dotX + 'px';
+        dot.style.top = dotY + 'px';
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+

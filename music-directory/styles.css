@@ -566,6 +566,341 @@ body {
 }
 
 /* ============================================
+   CONTENT-SPLIT (two-column text + visual)
+   ============================================ */
+.content-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    margin-top: var(--space-md);
+}
+
+.content-split--reverse {
+    direction: rtl;
+}
+
+.content-split--reverse>* {
+    direction: ltr;
+}
+
+.content-split__text {
+    max-width: none;
+}
+
+.content-split__text .section-text {
+    max-width: none;
+}
+
+.content-split__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   INSTRUMENT PHOTOS (about page)
+   ============================================ */
+.instrument-photo {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--clr-border);
+    position: relative;
+    transition: transform 0.5s var(--ease), box-shadow 0.5s;
+}
+
+.instrument-photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.instrument-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.instrument-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201, 163, 78, 0.08) 0%, transparent 50%, rgba(184, 45, 36, 0.06) 100%);
+    pointer-events: none;
+}
+
+/* ============================================
+   DECORATIVE ILLUSTRATIONS
+   ============================================ */
+.deco-illustration {
+    width: 100%;
+    max-width: 280px;
+    color: var(--clr-gold);
+    opacity: 0.25;
+    filter: drop-shadow(0 0 20px var(--clr-gold-glow));
+    animation: decoFadeIn 1.5s var(--ease) forwards, decoDrift 12s ease-in-out 2s infinite;
+}
+
+.deco-illustration--large {
+    max-width: 200px;
+    opacity: 0.2;
+}
+
+@keyframes decoFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 0.25;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes decoDrift {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* ============================================
+   VALUES BLOCKQUOTE
+   ============================================ */
+.values-quote {
+    position: relative;
+    padding: var(--space-lg) var(--space-lg);
+    border-left: 3px solid var(--clr-gold);
+    background: linear-gradient(135deg, rgba(201, 163, 78, 0.04) 0%, transparent 60%);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-top: var(--space-md);
+}
+
+.values-quote p {
+    font-size: 1.05rem;
+    color: var(--clr-text);
+    line-height: 1.85;
+    font-style: italic;
+}
+
+.values-quote cite {
+    display: block;
+    margin-top: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--clr-gold);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* ============================================
+   MISSION LIST & ITEMS
+   ============================================ */
+.mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+}
+
+.mission-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-md);
+    align-items: start;
+    padding: var(--space-lg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    background: var(--clr-surface-2);
+    transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
+}
+
+.mission-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--clr-border-h);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.mission-num {
+    font-family: var(--ff-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--clr-gold);
+    opacity: 0.4;
+    line-height: 1;
+    padding-top: 2px;
+    min-width: 40px;
+}
+
+.mission-item__content {
+    flex: 1;
+}
+
+.mission-item__content h3 {
+    font-family: var(--ff-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--clr-white);
+    margin-bottom: var(--space-xs);
+}
+
+.mission-item__content p {
+    font-size: 0.9rem;
+    color: var(--clr-text-dim);
+    line-height: 1.7;
+}
+
+.mission-item__icon {
+    width: 50px;
+    height: 50px;
+    color: var(--clr-gold);
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.mission-item__icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Compact variant (no icon column) */
+.mission-item--compact {
+    grid-template-columns: auto 1fr;
+}
+
+/* Tall instrument photo that stays alongside content */
+.instrument-photo--tall {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.instrument-photo--tall img {
+    min-height: 400px;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+/* Activities layout - aligns items at start */
+.content-split--activities {
+    align-items: start;
+}
+
+/* ============================================
+   CUSTOM CURSOR GLOW
+   ============================================ */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 163, 78, 0.06) 0%, rgba(184, 45, 36, 0.03) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+
+.cursor-glow.active {
+    opacity: 1;
+}
+
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--clr-gold);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.15s;
+    box-shadow: 0 0 8px var(--clr-gold-glow), 0 0 20px rgba(201, 163, 78, 0.2);
+}
+
+.cursor-dot.active {
+    opacity: 0.7;
+}
+
+/* ============================================
+   PILLARS GRID (about page)
+   ============================================ */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+}
+
+.pillar-card {
+    padding: var(--space-lg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    background: var(--clr-surface-2);
+    transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
+}
+
+.pillar-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--clr-border-h);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.pillar-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+    opacity: 0.5;
+}
+
+.pillar-card h3 {
+    font-family: var(--ff-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--clr-white);
+    margin-bottom: var(--space-xs);
+}
+
+.pillar-card p {
+    font-size: 0.88rem;
+    color: var(--clr-text-dim);
+    line-height: 1.7;
+}
+
+/* ============================================
+   BROTHERS PHOTO
+   ============================================ */
+.brothers-photo {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--clr-border);
+}
+
+.brothers-photo img {
+    width: 100%;
+    display: block;
+}
+
+.photo-caption {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--clr-text-dim);
+    padding: var(--space-sm) 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ============================================
    CARDS
    ============================================ */
 .card {
@@ -2195,33 +2530,96 @@ body {
 }
 
 /* ============================================
-   BROTHERS GROUP PHOTO
+   RESPONSIVE — MOBILE (max 768px)
    ============================================ */
-.brothers-photo {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--clr-border);
-    background: var(--clr-surface-2);
-    transition: border-color 0.45s, box-shadow 0.45s;
-}
+@media (max-width: 768px) {
 
-.brothers-photo:hover {
-    border-color: var(--clr-border-h);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
-}
+    /* Stack the nav for mobile */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--clr-bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-lg);
+        transform: translateY(-100%);
+        transition: transform 0.45s var(--ease);
+        z-index: 998;
+    }
 
-.brothers-photo img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+    .nav-links.active {
+        transform: translateY(0);
+    }
 
-.photo-caption {
-    text-align: center;
-    padding: var(--space-sm) var(--space-md);
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--clr-text-dim);
+    .nav-toggle {
+        display: flex;
+    }
+
+    /* Content splits stack on mobile */
+    .content-split {
+        grid-template-columns: 1fr;
+    }
+
+    .content-split--reverse {
+        direction: ltr;
+    }
+
+    .content-split__visual {
+        display: none;
+    }
+
+    /* Mission items simplify */
+    .mission-item {
+        grid-template-columns: auto 1fr;
+    }
+
+    .mission-item__icon {
+        display: none;
+    }
+
+    /* Stat and preview grids stack */
+    .stat-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-hero h1:not(.hero-title-shimmer),
+    .home-hero h1.hero-title-shimmer {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hide floating/bg instruments on mobile */
+    .hero-instruments,
+    .bg-instruments {
+        display: none;
+    }
+
+    .note-particles {
+        display: none;
+    }
+
+    .hero-glow-orb {
+        width: 300px;
+        height: 300px;
+    }
+
+    .cursor-glow,
+    .cursor-dot {
+        display: none !important;
+    }
 }
