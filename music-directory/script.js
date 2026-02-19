@@ -49,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---------- Custom Cursor Glow ---------- */
     initCursorGlow();
+
+    /* ---------- 3D Tilt Effect ---------- */
+    initTilt3D();
 });
 
 function initReveal() {
@@ -446,3 +449,41 @@ function initCursorGlow() {
     animate();
 }
 
+function initTilt3D() {
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    const elements = document.querySelectorAll('[data-tilt]');
+    if (elements.length === 0) return;
+
+    const maxRotation = 12; // degrees
+
+    elements.forEach(el => {
+        el.style.position = 'relative';
+
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Calculate rotation (-1 to 1 range, then scale)
+            const rotateY = ((x - centerX) / centerX) * maxRotation;
+            const rotateX = ((centerY - y) / centerY) * maxRotation;
+
+            el.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+            // Move the glossy highlight
+            const gloss = el.querySelector('::after') || el.style;
+            const gradientX = (x / rect.width) * 100;
+            const gradientY = (y / rect.height) * 100;
+            el.style.setProperty('--tilt-x', gradientX + '%');
+            el.style.setProperty('--tilt-y', gradientY + '%');
+        });
+
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+    });
+}

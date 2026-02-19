@@ -634,16 +634,16 @@ body {
    ============================================ */
 .deco-illustration {
     width: 100%;
-    max-width: 280px;
+    max-width: 360px;
     color: var(--clr-gold);
-    opacity: 0.25;
-    filter: drop-shadow(0 0 20px var(--clr-gold-glow));
+    opacity: 0.3;
+    filter: drop-shadow(0 0 25px var(--clr-gold-glow));
     animation: decoFadeIn 1.5s var(--ease) forwards, decoDrift 12s ease-in-out 2s infinite;
 }
 
 .deco-illustration--large {
-    max-width: 200px;
-    opacity: 0.2;
+    max-width: 240px;
+    opacity: 0.25;
 }
 
 @keyframes decoFadeIn {
@@ -653,7 +653,7 @@ body {
     }
 
     to {
-        opacity: 0.25;
+        opacity: 0.3;
         transform: scale(1) translateY(0);
     }
 }
@@ -831,6 +831,50 @@ body {
 
 .cursor-dot.active {
     opacity: 0.7;
+}
+
+/* ============================================
+   3D TILT EFFECT
+   ============================================ */
+[data-tilt] {
+    transform-style: preserve-3d;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s, border-color 0.35s;
+    will-change: transform;
+}
+
+[data-tilt]:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 30px rgba(201, 163, 78, 0.06);
+    border-color: var(--clr-border-h);
+}
+
+/* Glossy highlight that moves with tilt */
+[data-tilt]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+[data-tilt]:hover::after {
+    opacity: 1;
+}
+
+/* 3D hover on instrument photos */
+.instrument-photo {
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.instrument-photo:hover img {
+    transform: rotateY(-3deg) rotateX(2deg) scale(1.02);
+}
+
+.instrument-photo img {
+    transition: transform 0.5s var(--ease);
 }
 
 /* ============================================
